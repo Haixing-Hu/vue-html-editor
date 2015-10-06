@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Vue-html-editor : A Vue.js component implementing the HTML editor with the jQuery summernote plugin.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Vue-html-editor</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Haixing-Hu/vue-html-editor">View on GitHub</a>
+
+          <h1 id="project_title">Vue-html-editor</h1>
+          <h2 id="project_tagline">A Vue.js component implementing the HTML editor with the jQuery summernote plugin.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Haixing-Hu/vue-html-editor/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Haixing-Hu/vue-html-editor/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="vue-html-editor" class="anchor" href="#vue-html-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>vue-html-editor</h1>
+
+<p><a href="https://circleci.com/gh/Haixing-Hu/vue-html-editor/tree/master"><img src="https://circleci.com/gh/Haixing-Hu/vue-html-editor/tree/master.svg?style=shield" alt="Build Status"></a>
+<a href="https://coveralls.io/github/Haixing-Hu/vue-html-editor?branch=master"><img src="https://coveralls.io/repos/Haixing-Hu/vue-html-editor/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
+<a href="https://www.bithound.io/github/Haixing-Hu/vue-html-editor"><img src="https://www.bithound.io/github/Haixing-Hu/vue-html-editor/badges/score.svg" alt="bitHound Score"></a>
+<a href="https://david-dm.org/Haixing-Hu/vue-html-editor"><img src="https://david-dm.org/Haixing-Hu/vue-html-editor.svg" alt="Dependency Status"></a>
+<a href="https://david-dm.org/Haixing-Hu/vue-html-editor#info=devDependencies"><img src="https://david-dm.org/Haixing-Hu/vue-html-editor/dev-status.svg" alt="devDependency Status"></a></p>
+
+<p>A Vue.js component implementing the HTML editor with the <a href="https://github.com/summernote/summernote">jQuery summernote plugin</a>.</p>
+
+<h1>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
+
+<p>The demo page is <a href="http://haixing-hu.github.io/vue-html-editor/demo.html">HERE</a>.</p>
+
+<p><img src="screenshot.png" alt="Screenshot"></p>
+
+<h1>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<ul>
+<li>
+<a href="https://github.com/yyx990803/vue">Vue.js</a> <code>^0.12.0</code>
+</li>
+<li>
+<a href="https://github.com/summernote/summernote">Summernote</a> <code>^0.6.16</code>
+</li>
+</ul>
+
+<h1>
+<a id="instllation" class="anchor" href="#instllation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instllation</h1>
+
+<h2>
+<a id="npm" class="anchor" href="#npm" aria-hidden="true"><span class="octicon octicon-link"></span></a>npm</h2>
+
+<div class="highlight highlight-source-shell"><pre>$ npm install vue-html-editor</pre></div>
+
+<h2>
+<a id="bower" class="anchor" href="#bower" aria-hidden="true"><span class="octicon octicon-link"></span></a>bower</h2>
+
+<div class="highlight highlight-source-shell"><pre>$ bower install vue-html-editor</pre></div>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>The HTML snippets are as follows:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>container<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>app<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">vue</span><span class="pl-e">-html-editor</span> <span class="pl-e">model</span>=<span class="pl-s"><span class="pl-pds">"</span>{{@ text}}<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">vue</span><span class="pl-e">-html-editor</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>margin-top:40px<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt; The HTML contents are as follows:&lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">hr</span>&gt;
+    &lt;<span class="pl-ent">div</span> &gt;{{{text}}}&lt;/<span class="pl-ent">div</span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>The Javascript snippets are as follows:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Vue <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>vue<span class="pl-pds">"</span></span>);
+
+<span class="pl-k">var</span> vm <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Vue</span>({
+  el<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>#app<span class="pl-pds">"</span></span>,
+  components<span class="pl-k">:</span> {
+    <span class="pl-s"><span class="pl-pds">"</span>vue-html-editor<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>../src/vue-html-editor.vue<span class="pl-pds">"</span></span>)
+  },
+  data<span class="pl-k">:</span> {
+    text<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Hello World!<span class="pl-pds">"</span></span>
+  }
+});</pre></div>
+
+<h1>
+<a id="component-properties" class="anchor" href="#component-properties" aria-hidden="true"><span class="octicon octicon-link"></span></a>Component Properties</h1>
+
+<h2>
+<a id="model" class="anchor" href="#model" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>model</code>
+</h2>
+
+<p>The model bind to the control, which must be a two way binding variable.</p>
+
+<h2>
+<a id="language" class="anchor" href="#language" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>language</code>
+</h2>
+
+<p>The optional code of language used by the summernote plugin. Default value is <code>'en-US'</code>.
+Note that the language code passed to this property must be a language code together
+with a country code. This limitation is due to names of the i18n localizaiton files
+of the summernote plugin.</p>
+
+<h2>
+<a id="height" class="anchor" href="#height" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>height</code>
+</h2>
+
+<p>The optional height of the HTML editor, in pixels. Default value is 160.</p>
+
+<h2>
+<a id="minheight" class="anchor" href="#minheight" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>minHeight</code>
+</h2>
+
+<p>The optional minimum height of the HTML editor, in pixels. Default value is 160.</p>
+
+<h2>
+<a id="maxheight" class="anchor" href="#maxheight" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>maxHeight</code>
+</h2>
+
+<p>The optional maximum height of the HTML editor, in pixels. Default value is 800.</p>
+
+<h2>
+<a id="toolbar" class="anchor" href="#toolbar" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>toolbar</code>
+</h2>
+
+<p>The optional configuration of toolbar of the HTML editor. This value will be
+passed to the constructor of the summernote directly. Default value is as
+follows</p>
+
+<pre><code>[
+  ["font", ["bold", "italic", "underline", "clear"]],
+  ["fontsize", ["fontsize"]],
+  ["para", ["ul", "ol", "paragraph"]],
+  ["color", ["color"]],
+  ["insert", ["link", "picture", "hr"]]
+]
+</code></pre>
+
+<h1>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h1>
+
+<h2>
+<a id="control" class="anchor" href="#control" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>control</code>
+</h2>
+
+<p>This property is a reference to the JQuery selection of the base texearea
+control. It could be used to call the APIs of summernote. For example,
+<code>editor.control.code(val)</code> will set the HTML content of the editor to the
+specified value, where <code>editor</code> is the reference to the <code>vue-html-editor</code>
+component.</p>
+
+<h1>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h1>
+
+<ul>
+<li>Fork it !</li>
+<li>Create your top branch from <code>dev</code>: <code>git branch my-new-topic origin/dev</code>
+</li>
+<li>Commit your changes: <code>git commit -am 'Add some topic'</code>
+</li>
+<li>Push to the branch: <code>git push origin my-new-topic</code>
+</li>
+<li>Submit a pull request to <code>dev</code> branch of <code>Haixing-Hu/vue-html-editor</code> repository !</li>
+</ul>
+
+<h1>
+<a id="building-and-testing" class="anchor" href="#building-and-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building and Testing</h1>
+
+<p>First you should install all depended NPM packages. The NPM packages are used
+for building and testing this package.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ npm install</pre></div>
+
+<p>Then install all depended bower packages. The bower packages are depended by
+this packages.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ bower install</pre></div>
+
+<p>Now you can build the project.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ gulp build</pre></div>
+
+<p>The following command will test the project.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ gulp <span class="pl-c1">test</span></pre></div>
+
+<p>The following command will perform the test and generate a coverage report.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ gulp <span class="pl-c1">test</span>:coverage</pre></div>
+
+<p>The following command will perform the test, generate a coverage report, and
+upload the coverage report to <a href="https://coveralls.io/">coveralls.io</a>.</p>
+
+<div class="highlight highlight-source-shell"><pre>$ gulp <span class="pl-c1">test</span>:coveralls</pre></div>
+
+<p>You can also run <code>bower install</code> and <code>gulp build</code> together with the following
+command:</p>
+
+<div class="highlight highlight-source-shell"><pre>npm build</pre></div>
+
+<p>Or run <code>bower install</code> and <code>gulp test:coveralls</code> together with the following
+command:</p>
+
+<div class="highlight highlight-source-shell"><pre>npm <span class="pl-c1">test</span></pre></div>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p><a href="http://opensource.org/licenses/MIT">The MIT License</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Vue-html-editor maintained by <a href="https://github.com/Haixing-Hu">Haixing-Hu</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
