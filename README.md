@@ -105,6 +105,16 @@ follows
 ]
 ```
 
+# API
+
+## `control`
+
+This property is a reference to the JQuery selection of the base texearea
+control. It could be used to call the APIs of summernote. For example,
+`editor.control.code(val)` will set the HTML content of the editor to the
+specified value, where `editor` is the reference to the `vue-html-editor`
+component.
+
 # Contributing
 
 - Fork it !
