@@ -1,0 +1,35 @@
+{
+  "name": "vue-html-editor",
+  "description": "A Vue.js component implementing the HTML editor with the jQuery summernote plugin.",
+  "version": "0.1.0",
+  "keywords": [
+    "Vue.js",
+    "component",
+    "HTML editor",
+    "summernote"
+  ],
+  "authors": [
+    "Haixing Hu"
+  ],
+  "homepage": "https://github.com/Haixing-Hu/vue-html-editor",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Haixing-Hu/vue-html-editor.git"
+  },
+  "main": [
+    "src/vue-html-editor.vue"
+  ],
+  "ignore": [
+    "lib",
+    "coverage",
+    "node_modules"
+  ],
+  "dependencies": {
+    "vue": "^0.12.16",
+    "summernote": "^0.6.16"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.5"
+  }
+}
