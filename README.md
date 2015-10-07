@@ -8,8 +8,6 @@
 
 A Vue.js component implementing the HTML editor with the [jQuery summernote plugin](https://github.com/summernote/summernote).
 
-Check the project home page: http://haixing-hu.github.io/vue-html-editor/
-
 # Demo
 
 The demo page is [HERE](http://haixing-hu.github.io/vue-html-editor/demo.html).
