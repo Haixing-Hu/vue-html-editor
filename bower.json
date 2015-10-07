@@ -1,7 +1,7 @@
 {
   "name": "vue-html-editor",
   "description": "A Vue.js component implementing the HTML editor with the jQuery summernote plugin.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "Vue.js",
     "component",
@@ -27,9 +27,9 @@
   ],
   "dependencies": {
     "vue": "^0.12.16",
+    "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
+    "font-awesome": "^4.2.0",
     "summernote": "^0.6.16"
-  },
-  "devDependencies": {
-    "bootstrap": "^3.3.5"
   }
 }
