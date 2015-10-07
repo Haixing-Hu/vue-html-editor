@@ -58,7 +58,7 @@ var Vue = require("vue");
 var vm = new Vue({
   el: "#app",
   components: {
-    "vue-html-editor": require("../src/vue-html-editor.vue")
+    "vue-html-editor": require("vue-html-editor")
   },
   data: {
     text: "Hello World!"
