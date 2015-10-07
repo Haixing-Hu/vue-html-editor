@@ -18,7 +18,7 @@
     "url": "git@github.com:Haixing-Hu/vue-html-editor.git"
   },
   "main": [
-    "src/vue-html-editor.vue"
+    "src/vue-html-editor.js"
   ],
   "ignore": [
     "lib",

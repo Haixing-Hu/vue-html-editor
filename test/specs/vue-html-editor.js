@@ -11,7 +11,7 @@ var getVM = function(rootId, initText) {
       return el;
     },
     components: {
-      "vue-html-editor": require("../../src/vue-html-editor.vue")
+      "vue-html-editor": require("../../src/vue-html-editor.js")
     },
     data: function() {
       return {
@@ -32,7 +32,7 @@ describe("vue-html-editor", function() {
         var root = $("#static-render-inittext");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        assert.equal(vm.text, "Hello, World!")
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         assert.equal(vm.$.editor.control.code(), "Hello, World!");
         done();
@@ -46,7 +46,7 @@ describe("vue-html-editor", function() {
         var root = $("#static-render-empty");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        assert.equal(vm.text, "")
+        assert.equal(vm.text, "");
         assert.equal(codearea.text(), "");
         assert.equal(vm.$.editor.control.code(), "");
         done();
@@ -60,13 +60,12 @@ describe("vue-html-editor", function() {
         var root = $("#static-render-null");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        assert.equal(vm.text, null)
+        assert.equal(vm.text, null);
         assert.equal(codearea.text(), "");
         assert.equal(vm.$.editor.control.code(), "");
         done();
       });
     });
-
   });
 
   describe("change the model", function() {
@@ -78,16 +77,15 @@ describe("vue-html-editor", function() {
         var root = $("#change-model-normal");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        // check vm data
-        assert.equal(vm.text, "Hello, World!")
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         vm.text = "Ha Ha Ha.";
         vm.$nextTick(function() {
-          assert.equal(vm.text, "Ha Ha Ha.")
+          assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
-          assert.equal(vm.$.editor.control.code(), "Hello, World!");
+          assert.equal(vm.$.editor.control.code(), "Ha Ha Ha.");
+          done();
         });
-        done();
       });
     });
 
@@ -98,17 +96,16 @@ describe("vue-html-editor", function() {
         var root = $("#change-model-empty");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        // check vm data
-        assert.equal(vm.text, "Hello, World!")
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         assert.equal(vm.$.editor.control.code(), "Hello, World!");
         vm.text = "";
         vm.$nextTick(function() {
-          assert.equal(vm.text, "")
+          assert.equal(vm.text, "");
           assert.equal(codearea.text(), "");
           assert.equal(vm.$.editor.control.code(), "");
+          done();
         });
-        done();
       });
     });
 
@@ -119,8 +116,7 @@ describe("vue-html-editor", function() {
         var root = $("#change-model-null");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        // check vm data
-        assert.equal(vm.text, "Hello, World!")
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         assert.equal(vm.$.editor.control.code(), "Hello, World!");
         vm.text = null;
@@ -128,8 +124,8 @@ describe("vue-html-editor", function() {
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           assert.equal(vm.$.editor.control.code(), "");
+          done();
         });
-        done();
       });
     });
   });
@@ -142,15 +138,16 @@ describe("vue-html-editor", function() {
         var root = $("#change-code-normal");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        // check vm data
-        assert.equal(vm.text, "Hello, World!")
+        var control = vm.$.editor.control;
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        vm.$.editor.control.code("Ha Ha Ha.");
+        control.code("Ha Ha Ha.").trigger("summernote.change");
         vm.$nextTick(function() {
-          assert.equal(vm.text, "Ha Ha Ha.")
+          assert.equal(control.code(), "Ha Ha Ha.");
+          assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
+          done();
         });
-        done();
       });
     });
 
@@ -161,15 +158,16 @@ describe("vue-html-editor", function() {
         var root = $("#change-code-empty");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        // check vm data
-        assert.equal(vm.text, "Hello, World!")
+        var control = vm.$.editor.control;
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        vm.$.editor.control.code("");
+        control.code("").trigger("summernote.change");
         vm.$nextTick(function() {
-          assert.equal(vm.text, "")
+          assert.equal(control.code(), "");
+          assert.equal(vm.text, "");
           assert.equal(codearea.text(), "");
+          done();
         });
-        done();
       });
     });
 
@@ -180,15 +178,16 @@ describe("vue-html-editor", function() {
         var root = $("#change-code-null");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        // check vm data
-        assert.equal(vm.text, "Hello, World!")
+        var control = vm.$.editor.control;
+        assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        vm.$.editor.control.code(null);
+        control.code(null).trigger("summernote.change");
         vm.$nextTick(function() {
-          assert.equal(vm.text, null)
+          assert.equal(control.code(), "");
+          assert.equal(vm.text, "");
           assert.equal(codearea.text(), "");
+          done();
         });
-        done();
       });
     });
   });
