@@ -88,7 +88,8 @@ module.exports = {
       // handler after changing the code of summernote via ".code()" function.
       if (! me.isChanging) {
         me.isChanging = true;
-        me.model = me.control.code();
+        var code = me.control.code();
+        me.model = (code === null || code.length === 0 ? null : code);
         me.$nextTick(function () {
           me.isChanging = false;
         });
@@ -101,7 +102,8 @@ module.exports = {
         this.isChanging = true;
         //  note that setting code value does not automatically trigger
         //  the "summernote.change" event
-        this.control.code(val).trigger("summernote.change");
+        var code = (val === null ? "" : val);
+        this.control.code(code).trigger("summernote.change");
         this.isChanging = false;
       }
     }

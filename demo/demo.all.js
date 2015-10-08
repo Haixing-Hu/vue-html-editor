@@ -1,5 +1,5 @@
 /*!
- * vue-html-editor v0.1.0
+ * vue-html-editor v0.1.1
  * (c) 2015 Haixing Hu
  * Released under the MIT License.
  */
@@ -10275,12 +10275,6 @@
 /* 3 */
 /***/ function(module, exports) {
 
-	/*!
-	 * vue-html-editor v0.1.0
-	 * (c) 2015 Haixing Hu
-	 * Released under the MIT License.
-	 */
-
 	/**
 	 * A HTML editor control based on the summernote plugin.
 	 *
@@ -10352,7 +10346,6 @@
 	    this.control = null;
 	  },
 	  ready: function() {
-	    console.debug("html-editor.ready");
 	    //  initialize the summernote
 	    var me = this;
 	    this.control = $(this.$el);
@@ -10365,39 +10358,30 @@
 	      onInit: function() {
 	        me.control.code(me.model);
 	      }
-	      //,
-	      // onChange: function(contents, $editable) {
-	      //   console.debug("html-editor.onChange");
-	      //   if (! me.isChanging) {
-	      //     me.isChanging = true;
-	      //     me.model = contents;
-	      //     me.$nextTick(function () {
-	      //       me.isChanging = false;
-	      //       console.debug("html-editor.onChange: set model = " + me.model);
-	      //     });
-	      //   }
-	      // }
-	    });
-	    this.control.on("summernote.change", function(event, contents, $editable) {
-	      console.debug("html-editor: summernote.change");
+	    }).on("summernote.change", function() {
+	      // Note that we do not use the "onChange" options of the summernote
+	      // constructor. Instead, we use a event handler of "summernote.change"
+	      // event because that I don't know how to trigger the "onChange" event
+	      // handler after changing the code of summernote via ".code()" function.
 	      if (! me.isChanging) {
 	        me.isChanging = true;
-	        me.model = contents;
+	        var code = me.control.code();
+	        me.model = (code === null || code.length === 0 ? null : code);
 	        me.$nextTick(function () {
 	          me.isChanging = false;
-	          console.debug("html-editor.onChange: set model = " + me.model);
 	        });
 	      }
 	    });
 	  },
 	  watch: {
 	    "model": function (val, oldVal) {
-	      console.debug("html-editor.watch('model')");
 	      if (! this.isChanging) {
 	        this.isChanging = true;
-	        this.control.code(val);
+	        //  note that setting code value does not automatically trigger
+	        //  the "summernote.change" event
+	        var code = (val === null ? "" : val);
+	        this.control.code(code).trigger("summernote.change");
 	        this.isChanging = false;
-	        console.debug("html-editor.model.watch: set control.code = " + val);
 	      }
 	    }
 	  }

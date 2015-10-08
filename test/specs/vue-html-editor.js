@@ -164,7 +164,7 @@ describe("vue-html-editor", function() {
         control.code("").trigger("summernote.change");
         vm.$nextTick(function() {
           assert.equal(control.code(), "");
-          assert.equal(vm.text, "");
+          assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           done();
         });
@@ -184,7 +184,7 @@ describe("vue-html-editor", function() {
         control.code(null).trigger("summernote.change");
         vm.$nextTick(function() {
           assert.equal(control.code(), "");
-          assert.equal(vm.text, "");
+          assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           done();
         });

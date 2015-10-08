@@ -70,6 +70,11 @@ var vm = new Vue({
 
 The model bind to the control, which must be a two way binding variable.
 
+Note that the value of model could be set to `null`, and in that case the
+text content of the editor will be set to an empty string. While, if the text
+content of the editor is set to empty, the value of the model will be set to
+`null` instead of an empty string.
+
 ## `language`
 
 The optional code of language used by the summernote plugin. Default value is `'en-US'`.
