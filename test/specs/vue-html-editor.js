@@ -1,5 +1,6 @@
 var assert = require("assert");
 var Vue = require("vue");
+var HtmlEditor = require("../../src/vue-html-editor.js");
 
 var getVM = function(rootId, initText) {
   return Vue.extend({
@@ -11,7 +12,7 @@ var getVM = function(rootId, initText) {
       return el;
     },
     components: {
-      "vue-html-editor": require("../../src/vue-html-editor.js")
+      "vue-html-editor": HtmlEditor
     },
     data: function() {
       return {
@@ -192,4 +193,109 @@ describe("vue-html-editor", function() {
     });
   });
 
+  describe("set the height, minHeight, maxHeight", function() {
+    describe("set to normal value", function() {
+      it("set height", function(done) {
+        var vm = new Vue({
+          template: "<div><vue-html-editor v-ref='editor' " +
+                    "height='200'" +
+                    "model='{{@ text}}'></vue-html-editor></div>",
+          el: function() {
+            var el = document.createElement("div");
+            document.body.appendChild(el);
+            return el;
+          },
+          components: {
+            "vue-html-editor": HtmlEditor
+          },
+          data: function() {
+            return {
+              text: null
+            };
+          }
+        });
+        vm.$nextTick(function() {
+          assert.equal(vm.$.editor.height, 200);
+          done();
+        });
+      });
+      it("set minHeight", function(done) {
+        var vm = new Vue({
+          template: "<div><vue-html-editor v-ref='editor' " +
+                    "min-height='50'" +
+                    "model='{{@ text}}'></vue-html-editor></div>",
+          el: function() {
+            var el = document.createElement("div");
+            document.body.appendChild(el);
+            return el;
+          },
+          components: {
+            "vue-html-editor": HtmlEditor
+          },
+          data: function() {
+            return {
+              text: null
+            };
+          }
+        });
+        vm.$nextTick(function() {
+          assert.equal(vm.$.editor.minHeight, 50);
+          done();
+        });
+      });
+      it("set maxHeight", function(done) {
+        var vm = new Vue({
+          template: "<div><vue-html-editor v-ref='editor' " +
+                    "max-height='1000'" +
+                    "model='{{@ text}}'></vue-html-editor></div>",
+          el: function() {
+            var el = document.createElement("div");
+            document.body.appendChild(el);
+            return el;
+          },
+          components: {
+            "vue-html-editor": HtmlEditor
+          },
+          data: function() {
+            return {
+              text: null
+            };
+          }
+        });
+        vm.$nextTick(function() {
+          assert.equal(vm.$.editor.maxHeight, 1000);
+          done();
+        });
+      });
+    });
+
+    describe("set to invalid value", function() {
+      it("set height, min-height, max-height", function(done) {
+        var vm = new Vue({
+          template: "<div><vue-html-editor v-ref='editor' " +
+                    "height='200' min-height='250' max-height='100'" +
+                    "model='{{@ text}}'></vue-html-editor></div>",
+          el: function() {
+            var el = document.createElement("div");
+            document.body.appendChild(el);
+            return el;
+          },
+          components: {
+            "vue-html-editor": HtmlEditor
+          },
+          data: function() {
+            return {
+              text: null
+            };
+          }
+        });
+        vm.$nextTick(function() {
+          assert.equal(vm.$.editor.height, 200);
+          assert.equal(vm.$.editor.minHeight, 200);
+          assert.equal(vm.$.editor.maxHeight, 200);
+          done();
+        });
+      });
+    });
+  });
 });

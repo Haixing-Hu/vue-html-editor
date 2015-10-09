@@ -70,6 +70,12 @@ module.exports = {
   },
   ready: function() {
     //  initialize the summernote
+    if (this.minHeight > this.height) {
+      this.minHeight = this.height;
+    }
+    if (this.maxHeight < this.height) {
+      this.maxHeight = this.height;
+    }
     var me = this;
     this.control = $(this.$el);
     this.control.summernote({
