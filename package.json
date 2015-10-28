@@ -15,9 +15,7 @@
   "bugs": {
     "url": "https://github.com/Haixing-Hu/vue-html-editor/issues"
   },
-  "main": [
-    "src/vue-html-editor.js"
-  ],
+  "main": "src/vue-html-editor.js",
   "configs": {
     "directories": {
       "dist": "dist",
