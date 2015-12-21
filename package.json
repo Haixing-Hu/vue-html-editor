@@ -15,9 +15,7 @@
   "bugs": {
     "url": "https://github.com/Haixing-Hu/vue-html-editor/issues"
   },
-  "main": [
-    "src/vue-html-editor.js"
-  ],
+  "main": "src/vue-html-editor.js",
   "configs": {
     "directories": {
       "dist": "dist",
@@ -68,5 +66,9 @@
     "istanbul": "^0.3.21",
     "istanbul-instrumenter-loader": "^0.1.3",
     "vue": "^0.12.10"
+  },
+  "dependencies": {
+   "vue":"^0.12.10",
+   "summernote":"^0.7.0"
   }
 }
