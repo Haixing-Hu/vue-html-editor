@@ -4,7 +4,7 @@ var HtmlEditor = require("../../src/vue-html-editor.js");
 
 var getVM = function(rootId, initText) {
   return Vue.extend({
-    template: "<div><vue-html-editor v-ref='editor' model='{{@ text}}'></vue-html-editor></div>",
+    template: "<div><vue-html-editor v-ref='editor' :model.sync='text'></vue-html-editor></div>",
     el: function() {
       var el = document.createElement("div");
       el.id = rootId;
@@ -199,7 +199,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "height='200'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+                    " :model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -223,7 +223,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "min-height='50'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+                    " :model.sync='text''></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -247,7 +247,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "max-height='1000'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+                    " :model.sync='text''></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -274,7 +274,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "height='200' min-height='250' max-height='100'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+                    " :model.sync='text''></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);

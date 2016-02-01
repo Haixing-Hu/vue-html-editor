@@ -26,10 +26,10 @@
     "node_modules"
   ],
   "dependencies": {
-    "vue": "^0.12.16",
+    "vue": "^1.0.16",
     "bootstrap": "^3.3.5",
     "jquery": "^2.1.4",
     "font-awesome": "^4.2.0",
-    "summernote": "^0.6.16"
+    "summernote": "^0.7.3"
   }
 }
