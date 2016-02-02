@@ -39,11 +39,11 @@ The HTML snippets are as follows:
 
 ```html
 <div class="container" id="app">
-  <vue-html-editor model="{{@ text}}"></vue-html-editor>
+  <vue-html-editor  :model.sync="text"></vue-html-editor>
   <div style="margin-top:40px">
     <div> The HTML contents are as follows:</div>
     <hr>
-    <div >{{{text}}}</div>
+    <div >{{text}}</div>
   </div>
 </div>
 ```
