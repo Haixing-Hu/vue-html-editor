@@ -84,8 +84,10 @@ module.exports = {
       minHeight: this.minHeight,
       maxHeight: this.maxHeight,
       toolbar: this.toolbar,
-      onInit: function() {
-        me.control.summernote('code', me.model);
+      callbacks : {
+        onInit: function() {
+            me.control.summernote('code', me.model);
+        }
       }
     }).on("summernote.change", function() {
       // Note that we do not use the "onChange" options of the summernote
@@ -109,7 +111,8 @@ module.exports = {
         //  note that setting code value does not automatically trigger
         //  the "summernote.change" event
         var code = (val === null ? "" : val);
-        this.control.code(code).trigger("summernote.change");
+        this.control.summernote('code', code);
+        this.control.summernote().trigger('summernote.change');
         this.isChanging = false;
       }
     }

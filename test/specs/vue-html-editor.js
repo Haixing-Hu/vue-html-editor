@@ -4,7 +4,7 @@ var HtmlEditor = require("../../src/vue-html-editor.js");
 
 var getVM = function(rootId, initText) {
   return Vue.extend({
-    template: "<div><vue-html-editor v-ref='editor' :model.sync='text'></vue-html-editor></div>",
+    template: "<div><vue-html-editor v-ref='editor' model='{{{@ text}}}'></vue-html-editor></div>",
     el: function() {
       var el = document.createElement("div");
       el.id = rootId;
@@ -35,7 +35,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$.editor.control.summernote('code'), "Hello, World!");
         done();
       });
     });
@@ -49,7 +49,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "");
         assert.equal(codearea.text(), "");
-        assert.equal(vm.$.editor.control.code(), "");
+        assert.equal(vm.$.editor.control.summernote('code'), "");
         done();
       });
     });
@@ -63,7 +63,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, null);
         assert.equal(codearea.text(), "");
-        assert.equal(vm.$.editor.control.code(), "");
+        assert.equal(vm.$.editor.control.summernote('code'), "");
         done();
       });
     });
@@ -84,7 +84,8 @@ describe("vue-html-editor", function() {
         vm.$nextTick(function() {
           assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
-          assert.equal(vm.$.editor.control.code(), "Ha Ha Ha.");
+          
+          assert.equal(vm.$.editor.control.summernote('code'), "Ha Ha Ha.");
           done();
         });
       });
@@ -99,12 +100,12 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$.editor.control.summernote('code'), "Hello, World!");
         vm.text = "";
         vm.$nextTick(function() {
           assert.equal(vm.text, "");
           assert.equal(codearea.text(), "");
-          assert.equal(vm.$.editor.control.code(), "");
+          assert.equal(vm.$.editor.control.summernote('code'), "");
           done();
         });
       });
@@ -119,12 +120,12 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$.editor.control.summernote('code'), "Hello, World!");
         vm.text = null;
         vm.$nextTick(function() {
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
-          assert.equal(vm.$.editor.control.code(), "");
+          assert.equal(vm.$.editor.control.summernote('code'), "");
           done();
         });
       });
@@ -142,9 +143,10 @@ describe("vue-html-editor", function() {
         var control = vm.$.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        control.code("Ha Ha Ha.").trigger("summernote.change");
+        control.summernote('code', "Ha Ha Ha.");
+        control.summernote().trigger('summernote.change');
         vm.$nextTick(function() {
-          assert.equal(control.code(), "Ha Ha Ha.");
+          assert.equal(control.summernote('code'), "Ha Ha Ha.");
           assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
           done();
@@ -162,9 +164,10 @@ describe("vue-html-editor", function() {
         var control = vm.$.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        control.code("").trigger("summernote.change");
+        control.summernote('code', "");
+        control.summernote().trigger('summernote.change');
         vm.$nextTick(function() {
-          assert.equal(control.code(), "");
+          assert.equal(control.summernote('code'), "");
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           done();
@@ -182,9 +185,10 @@ describe("vue-html-editor", function() {
         var control = vm.$.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        control.code(null).trigger("summernote.change");
+        control.summernote('code', null);
+        control.summernote().trigger('summernote.change');
         vm.$nextTick(function() {
-          assert.equal(control.code(), "");
+          assert.equal(control.summernote('code'), "");
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           done();
@@ -223,7 +227,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "min-height='50'" +
-                    " :model.sync='text''></vue-html-editor></div>",
+                    " :model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -247,7 +251,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "max-height='1000'" +
-                    " :model.sync='text''></vue-html-editor></div>",
+                    " :model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -274,7 +278,7 @@ describe("vue-html-editor", function() {
         var vm = new Vue({
           template: "<div><vue-html-editor v-ref='editor' " +
                     "height='200' min-height='250' max-height='100'" +
-                    " :model.sync='text''></vue-html-editor></div>",
+                    " :model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
