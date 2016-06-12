@@ -16,8 +16,8 @@ The demo page is [HERE](http://haixing-hu.github.io/vue-html-editor/demo.html).
 
 # Requirements
 
-- [Vue.js](https://github.com/yyx990803/vue) `^0.12.0`
-- [Summernote](https://github.com/summernote/summernote) `^0.6.16`
+- [Vue.js](https://github.com/yyx990803/vue) `^1.0.24`
+- [Summernote](https://github.com/summernote/summernote) `^0.8.1`
 
 # Instllation
 
