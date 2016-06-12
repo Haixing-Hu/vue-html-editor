@@ -4,7 +4,7 @@ var HtmlEditor = require("../../src/vue-html-editor.js");
 
 var getVM = function(rootId, initText) {
   return Vue.extend({
-    template: "<div><vue-html-editor v-ref='editor' model='{{@ text}}'></vue-html-editor></div>",
+    template: "<div><vue-html-editor v-ref:editor :model.sync='text'></vue-html-editor></div>",
     el: function() {
       var el = document.createElement("div");
       el.id = rootId;
@@ -35,7 +35,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$refs.editor.control.code(), "Hello, World!");
         done();
       });
     });
@@ -49,7 +49,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "");
         assert.equal(codearea.text(), "");
-        assert.equal(vm.$.editor.control.code(), "");
+        assert.equal(vm.$refs.editor.control.code(), "");
         done();
       });
     });
@@ -63,7 +63,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, null);
         assert.equal(codearea.text(), "");
-        assert.equal(vm.$.editor.control.code(), "");
+        assert.equal(vm.$refs.editor.control.code(), "");
         done();
       });
     });
@@ -84,7 +84,7 @@ describe("vue-html-editor", function() {
         vm.$nextTick(function() {
           assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
-          assert.equal(vm.$.editor.control.code(), "Ha Ha Ha.");
+          assert.equal(vm.$refs.editor.control.code(), "Ha Ha Ha.");
           done();
         });
       });
@@ -99,12 +99,12 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$refs.editor.control.code(), "Hello, World!");
         vm.text = "";
         vm.$nextTick(function() {
           assert.equal(vm.text, "");
           assert.equal(codearea.text(), "");
-          assert.equal(vm.$.editor.control.code(), "");
+          assert.equal(vm.$refs.editor.control.code(), "");
           done();
         });
       });
@@ -119,12 +119,12 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$refs.editor.control.code(), "Hello, World!");
         vm.text = null;
         vm.$nextTick(function() {
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
-          assert.equal(vm.$.editor.control.code(), "");
+          assert.equal(vm.$refs.editor.control.code(), "");
           done();
         });
       });
@@ -139,7 +139,7 @@ describe("vue-html-editor", function() {
         var root = $("#change-code-normal");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        var control = vm.$.editor.control;
+        var control = vm.$refs.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         control.code("Ha Ha Ha.").trigger("summernote.change");
@@ -159,7 +159,7 @@ describe("vue-html-editor", function() {
         var root = $("#change-code-empty");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        var control = vm.$.editor.control;
+        var control = vm.$refs.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         control.code("").trigger("summernote.change");
@@ -179,7 +179,7 @@ describe("vue-html-editor", function() {
         var root = $("#change-code-null");
         var editor = root.find(".note-editor");
         var codearea = editor.find(".note-editable");
-        var control = vm.$.editor.control;
+        var control = vm.$refs.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
         control.code(null).trigger("summernote.change");
@@ -197,9 +197,9 @@ describe("vue-html-editor", function() {
     describe("set to normal value", function() {
       it("set height", function(done) {
         var vm = new Vue({
-          template: "<div><vue-html-editor v-ref='editor' " +
-                    "height='200'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+          template: "<div><vue-html-editor v-ref:editor " +
+                    ":height='200' " +
+                    ":model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -215,15 +215,15 @@ describe("vue-html-editor", function() {
           }
         });
         vm.$nextTick(function() {
-          assert.equal(vm.$.editor.height, 200);
+          assert.equal(vm.$refs.editor.height, 200);
           done();
         });
       });
       it("set minHeight", function(done) {
         var vm = new Vue({
-          template: "<div><vue-html-editor v-ref='editor' " +
-                    "min-height='50'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+          template: "<div><vue-html-editor v-ref:editor " +
+                    ":min-height='50'" +
+                    ":model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -239,15 +239,15 @@ describe("vue-html-editor", function() {
           }
         });
         vm.$nextTick(function() {
-          assert.equal(vm.$.editor.minHeight, 50);
+          assert.equal(vm.$refs.editor.minHeight, 50);
           done();
         });
       });
       it("set maxHeight", function(done) {
         var vm = new Vue({
-          template: "<div><vue-html-editor v-ref='editor' " +
-                    "max-height='1000'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+          template: "<div><vue-html-editor v-ref:editor " +
+                    ":max-height='1000' " +
+                    ":model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -263,7 +263,7 @@ describe("vue-html-editor", function() {
           }
         });
         vm.$nextTick(function() {
-          assert.equal(vm.$.editor.maxHeight, 1000);
+          assert.equal(vm.$refs.editor.maxHeight, 1000);
           done();
         });
       });
@@ -272,9 +272,9 @@ describe("vue-html-editor", function() {
     describe("set to invalid value", function() {
       it("set height, min-height, max-height", function(done) {
         var vm = new Vue({
-          template: "<div><vue-html-editor v-ref='editor' " +
-                    "height='200' min-height='250' max-height='100'" +
-                    "model='{{@ text}}'></vue-html-editor></div>",
+          template: "<div><vue-html-editor v-ref:editor " +
+                    ":height='200' :min-height='250' :max-height='100' " +
+                    ":model.sync='text'></vue-html-editor></div>",
           el: function() {
             var el = document.createElement("div");
             document.body.appendChild(el);
@@ -290,9 +290,9 @@ describe("vue-html-editor", function() {
           }
         });
         vm.$nextTick(function() {
-          assert.equal(vm.$.editor.height, 200);
-          assert.equal(vm.$.editor.minHeight, 200);
-          assert.equal(vm.$.editor.maxHeight, 200);
+          assert.equal(vm.$refs.editor.height, 200);
+          assert.equal(vm.$refs.editor.minHeight, 200);
+          assert.equal(vm.$refs.editor.maxHeight, 200);
           done();
         });
       });

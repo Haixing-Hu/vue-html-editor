@@ -13,7 +13,7 @@
 <body>
   <h1 class="text-center">Demo of vue-html-editor</h1>
   <div class="container" id="app">
-    <vue-html-editor model="{{@ text}}"></vue-html-editor>
+    <vue-html-editor :model.sync="text"></vue-html-editor>
     <div style="margin-top:40px">
       <div> The HTML contents are as follows:</div>
       <hr>

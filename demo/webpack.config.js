@@ -17,8 +17,13 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.vue$/, loader: VueLoader.withLoaders({html: "raw"}) } // use raw-loader to process HTML
+      { test: /\.vue$/, loader: "vue" }
     ]
+  },
+  vue: {
+    loaders: {
+      html: "raw"    // use raw-loader to process HTML
+    }
   },
   resolve: {
     root: [__dirname],

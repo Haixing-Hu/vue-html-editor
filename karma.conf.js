@@ -32,14 +32,19 @@ module.exports = function (config) {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        loaders: [
-          { test: /\.vue$/, loader: VueLoader.withLoaders({html: "raw"}) } // use raw-loader to process HTML
-        ],
+        loaders: [{
+          test: /\.vue$/, loader: "vue"
+        }],
         postLoaders: [{
           test: /\.js$/,
           exclude: /test|node_modules|lib/,
           loader: 'istanbul-instrumenter'
         }]
+      },
+      vue: {
+        loaders: {
+          html: "raw"    // use raw-loader to process HTML
+        }
       }
     },
 

@@ -12,6 +12,8 @@
  * @param maxHeight
  *    the optional maximum height of the HTML editor. Default value is 800.
  *    A null value indicates no limitation.
+ * @param name
+ *    the optional name of the textarea control.
  * @param toolbar
  *    the optional configuration of toolbar buttons. Default value is
  *     [["font", ["bold", "italic", "underline", "clear"]],
@@ -24,7 +26,7 @@
 module.exports = {
   replace: true,
   inherit: false,
-  template: "<textarea class='form-control'></textarea>",
+  template: "<textarea class='form-control' :name='name'></textarea>",
   props: {
     model: {
       required: true,
@@ -49,6 +51,11 @@ module.exports = {
       type: Number,
       required: false,
       default: 800
+    },
+    name: {
+      type: String,
+      required: false,
+      default: ""
     },
     toolbar: {
       type: Array,

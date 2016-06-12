@@ -39,7 +39,7 @@ The HTML snippets are as follows:
 
 ```html
 <div class="container" id="app">
-  <vue-html-editor model="{{@ text}}"></vue-html-editor>
+  <vue-html-editor name="html-editor" :model.sync="text"></vue-html-editor>
   <div style="margin-top:40px">
     <div> The HTML contents are as follows:</div>
     <hr>
@@ -93,6 +93,10 @@ The optional minimum height of the HTML editor, in pixels. Default value is 160.
 ## `maxHeight`
 
 The optional maximum height of the HTML editor, in pixels. Default value is 800.
+
+## `name`
+
+The optional name of the textarea control.
 
 ## `toolbar`
 
@@ -168,13 +172,13 @@ $ gulp test:coveralls
 You can also run `bower install` and `gulp build` together with the following
 command:
 ```shell
-npm build
+npm run build
 ```
 
 Or run `bower install` and `gulp test:coveralls` together with the following
 command:
 ```shell
-npm test
+npm run test
 ```
 
 # License
