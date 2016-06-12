@@ -35,7 +35,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$refs.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$refs.editor.control.summernote("code"), "Hello, World!");
         done();
       });
     });
@@ -49,7 +49,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "");
         assert.equal(codearea.text(), "");
-        assert.equal(vm.$refs.editor.control.code(), "");
+        assert.equal(vm.$refs.editor.control.summernote("code"), "");
         done();
       });
     });
@@ -63,7 +63,7 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, null);
         assert.equal(codearea.text(), "");
-        assert.equal(vm.$refs.editor.control.code(), "");
+        assert.equal(vm.$refs.editor.control.summernote("code"), "");
         done();
       });
     });
@@ -84,7 +84,7 @@ describe("vue-html-editor", function() {
         vm.$nextTick(function() {
           assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
-          assert.equal(vm.$refs.editor.control.code(), "Ha Ha Ha.");
+          assert.equal(vm.$refs.editor.control.summernote("code"), "Ha Ha Ha.");
           done();
         });
       });
@@ -99,12 +99,12 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$refs.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$refs.editor.control.summernote("code"), "Hello, World!");
         vm.text = "";
         vm.$nextTick(function() {
           assert.equal(vm.text, "");
           assert.equal(codearea.text(), "");
-          assert.equal(vm.$refs.editor.control.code(), "");
+          assert.equal(vm.$refs.editor.control.summernote("code"), "");
           done();
         });
       });
@@ -119,12 +119,12 @@ describe("vue-html-editor", function() {
         var codearea = editor.find(".note-editable");
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        assert.equal(vm.$refs.editor.control.code(), "Hello, World!");
+        assert.equal(vm.$refs.editor.control.summernote("code"), "Hello, World!");
         vm.text = null;
         vm.$nextTick(function() {
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
-          assert.equal(vm.$refs.editor.control.code(), "");
+          assert.equal(vm.$refs.editor.control.summernote("code"), "");
           done();
         });
       });
@@ -142,9 +142,9 @@ describe("vue-html-editor", function() {
         var control = vm.$refs.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        control.code("Ha Ha Ha.").trigger("summernote.change");
+        control.summernote("code", "Ha Ha Ha.");
         vm.$nextTick(function() {
-          assert.equal(control.code(), "Ha Ha Ha.");
+          assert.equal(control.summernote("code"), "Ha Ha Ha.");
           assert.equal(vm.text, "Ha Ha Ha.");
           assert.equal(codearea.text(), "Ha Ha Ha.");
           done();
@@ -162,9 +162,9 @@ describe("vue-html-editor", function() {
         var control = vm.$refs.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        control.code("").trigger("summernote.change");
+        control.summernote("code", "");
         vm.$nextTick(function() {
-          assert.equal(control.code(), "");
+          assert.equal(control.summernote("code"), "");
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           done();
@@ -182,9 +182,9 @@ describe("vue-html-editor", function() {
         var control = vm.$refs.editor.control;
         assert.equal(vm.text, "Hello, World!");
         assert.equal(codearea.text(), "Hello, World!");
-        control.code(null).trigger("summernote.change");
+        control.summernote("code", null);
         vm.$nextTick(function() {
-          assert.equal(control.code(), "");
+          assert.equal(control.summernote("code"), "");
           assert.equal(vm.text, null);
           assert.equal(codearea.text(), "");
           done();
