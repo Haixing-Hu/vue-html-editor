@@ -1,5 +1,5 @@
 /*!
- * vue-html-editor v0.2.0
+ * vue-html-editor v0.2.1
  * (c) 2016 Haixing Hu
  * Released under the MIT License.
  */

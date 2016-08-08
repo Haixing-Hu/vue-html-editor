@@ -26,7 +26,7 @@
     "node_modules"
   ],
   "dependencies": {
-    "vue": "^1.0.24",
+    "vue": "^1.0.26",
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.2.0",
     "jquery": "^2.2.4",
