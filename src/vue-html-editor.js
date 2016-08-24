@@ -26,7 +26,7 @@
 module.exports = {
   replace: true,
   inherit: false,
-  template: "<textarea class='form-control' :name='name'></textarea>",
+  template: "<div><textarea class='form-control' :name='name'></textarea></div>",
   props: {
     model: {
       required: true,
