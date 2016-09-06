@@ -23,6 +23,7 @@
  *      ["insert", ["link", "picture", "hr"]]]
  * @author Haixing Hu
  */
+
 module.exports = {
   replace: true,
   inherit: false,
@@ -56,6 +57,11 @@ module.exports = {
       type: String,
       required: false,
       default: ""
+    },
+    airMode: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     toolbar: {
       type: Array,
@@ -91,6 +97,7 @@ module.exports = {
       minHeight: this.minHeight,
       maxHeight: this.maxHeight,
       toolbar: this.toolbar,
+      airMode: this.airMode,
       callbacks: {
         onInit: function() {
           me.control.summernote("code", me.model);
