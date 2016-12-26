@@ -60,7 +60,7 @@ gulp.task('test', function(done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
-  }, done).start();
+  }, () => done()).start();
 });
 
 gulp.task('test:coverage', function(done) {
@@ -69,7 +69,7 @@ gulp.task('test:coverage', function(done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
-  }, done).start();
+  }, () => done()).start();
 });
 
 gulp.task('test:coveralls', function(done) {
@@ -78,7 +78,7 @@ gulp.task('test:coveralls', function(done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
-  }, done).start();
+  }, () => done()).start();
 });
 
 // ---------------------------------------------------------------------

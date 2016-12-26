@@ -9,3 +9,8 @@ var vm = new Vue({
     text: "Hello World!"
   }
 });
+
+var editor = vm.$refs.editor;
+editor.$on('input', function(inputed) {
+  vm.$data.text = inputed;
+});
