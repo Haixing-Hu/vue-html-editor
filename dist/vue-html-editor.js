@@ -1,6 +1,6 @@
 /*!
  * vue-html-editor v0.2.1
- * (c) 2016 Haixing Hu
+ * (c) 2017 Haixing Hu
  * Released under the MIT License.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -75,6 +75,7 @@
 	 * @author Haixing Hu
 	 */
 	module.exports = {
+	  name: 'vue-html-editor',
 	  replace: true,
 	  inherit: false,
 	  template: "<textarea class='form-control' :name='name' ref='input'></textarea>",
@@ -156,9 +157,9 @@
 	        if (! me.isChanging) {
 	          me.isChanging = true;
 	          var code = me.control.summernote("code");
-	          me.model = (code === null || code.length === 0 ? null : code);
-	          me.$refs.input.value = me.model;
-	          me.$emit('input', me.model);
+	          var model = (code === null || code.length === 0 ? null : code);
+	          me.$refs.input.value = model;
+	          me.$emit('input', model);
 	
 	          me.$nextTick(function () {
 	            me.isChanging = false;
