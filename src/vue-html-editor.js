@@ -120,5 +120,8 @@ module.exports = {
         this.isChanging = false;
       }
     }
+  },
+  beforeDestroy: function() {
+    $(this.$el).summernote('destroy');
   }
 };
