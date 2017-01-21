@@ -13,12 +13,16 @@
 <body>
   <h1 class="text-center">Demo of vue-html-editor</h1>
   <div class="container" id="app">
-    <vue-html-editor :model.sync="text"></vue-html-editor>
+    <vue-html-editor v-if="visible" :model.sync="text"></vue-html-editor>
     <div style="margin-top:40px">
       <div> The HTML contents are as follows:</div>
       <hr>
       <div >{{{text}}}</div>
     </div>
+    <section style="margin-top: 40px">
+      <button v-if="visible" type="button" class="btn btn-default" @click="hide">hide editor</button>
+      <button v-else type="button" class="btn btn-default" @click="show">show editor</button>
+    </section>
   </div>
   <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
   <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.js"></script>

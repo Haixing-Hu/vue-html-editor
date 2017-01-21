@@ -1,6 +1,6 @@
 /*!
  * vue-html-editor v0.2.1
- * (c) 2016 Haixing Hu
+ * (c) 2017 Haixing Hu
  * Released under the MIT License.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -171,8 +171,12 @@
 	        this.isChanging = false;
 	      }
 	    }
+	  },
+	  beforeDestroy: function() {
+	    $(this.$el).summernote('destroy');
 	  }
 	};
+
 
 /***/ }
 /******/ ]);
