@@ -16,7 +16,10 @@ module.exports = {
   },
   resolve: {
     root: [__dirname],
-    modulesDirectories: [ "lib" ]
+    modulesDirectories: [ "lib" ],
+    alias: {
+      'vue$': 'vue/dist/vue.common.js'
+    }
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),

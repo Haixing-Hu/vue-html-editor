@@ -1,6 +1,6 @@
 /*!
  * vue-html-editor v0.2.1
- * (c) 2016 Haixing Hu
+ * (c) 2017 Haixing Hu
  * Released under the MIT License.
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -75,13 +75,14 @@
 	 * @author Haixing Hu
 	 */
 	module.exports = {
+	  name: 'vue-html-editor',
 	  replace: true,
 	  inherit: false,
-	  template: "<textarea class='form-control' :name='name'></textarea>",
+	  template: "<textarea class='form-control' :name='name' ref='input'></textarea>",
 	  props: {
 	    model: {
 	      required: true,
-	      twoWay: true
+	      default: ""
 	    },
 	    language: {
 	      type: String,
@@ -122,44 +123,49 @@
 	      }
 	    }
 	  },
-	  beforeCompile: function() {
+	  created: function() {
 	    this.isChanging = false;
 	    this.control = null;
 	  },
-	  ready: function() {
-	    //  initialize the summernote
-	    if (this.minHeight > this.height) {
-	      this.minHeight = this.height;
-	    }
-	    if (this.maxHeight < this.height) {
-	      this.maxHeight = this.height;
-	    }
-	    var me = this;
-	    this.control = $(this.$el);
-	    this.control.summernote({
-	      lang: this.language,
-	      height: this.height,
-	      minHeight: this.minHeight,
-	      maxHeight: this.maxHeight,
-	      toolbar: this.toolbar,
-	      callbacks: {
-	        onInit: function() {
-	          me.control.summernote("code", me.model);
+	  mounted: function() {
+	    this.$nextTick(function() {
+	      //  initialize the summernote
+	      if (this.minHeight > this.height) {
+	        this.minHeight = this.height;
+	      }
+	      if (this.maxHeight < this.height) {
+	        this.maxHeight = this.height;
+	      }
+	      var me = this;
+	      this.control = $(this.$el);
+	      this.control.summernote({
+	        lang: this.language,
+	        height: this.height,
+	        minHeight: this.minHeight,
+	        maxHeight: this.maxHeight,
+	        toolbar: this.toolbar,
+	        callbacks: {
+	          onInit: function() {
+	            me.control.summernote("code", me.model);
+	          }
 	        }
-	      }
-	    }).on("summernote.change", function() {
-	      // Note that we do not use the "onChange" options of the summernote
-	      // constructor. Instead, we use a event handler of "summernote.change"
-	      // event because that I don't know how to trigger the "onChange" event
-	      // handler after changing the code of summernote via ".summernote('code')" function.
-	      if (! me.isChanging) {
-	        me.isChanging = true;
-	        var code = me.control.summernote("code");
-	        me.model = (code === null || code.length === 0 ? null : code);
-	        me.$nextTick(function () {
-	          me.isChanging = false;
-	        });
-	      }
+	      }).on("summernote.change", function() {
+	        // Note that we do not use the "onChange" options of the summernote
+	        // constructor. Instead, we use a event handler of "summernote.change"
+	        // event because that I don't know how to trigger the "onChange" event
+	        // handler after changing the code of summernote via ".summernote('code')" function.
+	        if (! me.isChanging) {
+	          me.isChanging = true;
+	          var code = me.control.summernote("code");
+	          var model = (code === null || code.length === 0 ? null : code);
+	          me.$refs.input.value = model;
+	          me.$emit('input', model);
+	
+	          me.$nextTick(function () {
+	            me.isChanging = false;
+	          });
+	        }
+	      });
 	    });
 	  },
 	  watch: {
@@ -173,6 +179,7 @@
 	    }
 	  }
 	};
+
 
 /***/ }
 /******/ ]);

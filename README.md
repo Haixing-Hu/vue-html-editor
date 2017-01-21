@@ -16,7 +16,7 @@ The demo page is [HERE](http://haixing-hu.github.io/vue-html-editor/demo.html).
 
 # Requirements
 
-- [Vue.js](https://github.com/yyx990803/vue) `^1.0.24`
+- [Vue.js](https://github.com/yyx990803/vue) `^2.0.0`
 - [Summernote](https://github.com/summernote/summernote) `^0.8.1`
 
 # Instllation
@@ -39,7 +39,7 @@ The HTML snippets are as follows:
 
 ```html
 <div class="container" id="app">
-  <vue-html-editor name="html-editor" :model.sync="text"></vue-html-editor>
+  <vue-html-editor name="html-editor" refs="editor" :model="text"></vue-html-editor>
   <div style="margin-top:40px">
     <div> The HTML contents are as follows:</div>
     <hr>
@@ -62,13 +62,18 @@ var vm = new Vue({
     text: "Hello World!"
   }
 });
+
+var editor = vm.$refs.editor;
+editor.$on('input', function(inputed) {
+  vm.$data.text = inputed;
+});
 ```
 
 # Component Properties
 
 ## `model`
 
-The model bind to the control, which must be a two way binding variable.
+The model bind to the control.
 
 Note that the value of model could be set to `null`, and in that case the
 text content of the editor will be set to an empty string. While, if the text
